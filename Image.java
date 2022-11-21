@@ -1,11 +1,13 @@
 package interfaz;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Image {
 	public int width;
 	public int height;
-	private ArrayList<Pixel> pixeles = new ArrayList<Pixel>();
+	protected ArrayList<Pixel> pixeles = new ArrayList<Pixel>();
 
 	public int getWidth() {
 		return width;
@@ -32,6 +34,10 @@ public class Image {
 		this.pixeles = pixeles;
 	}
 	
+	public void sortPixs()
+	{
+		Collections.sort(this.pixeles, Comparator.comparing(Pixel::getX).thenComparing(Pixel::getY));
+	}
 	
 	public boolean isBitmap()
 	{
@@ -108,8 +114,37 @@ public class Image {
 		this.setHeight(y2 - y1 + 1);
 	}
 	
-	public void histogram()
+	public String histogram()
+	{
+		return "-1";
+	}
+	
+	public void rotate90()
+	{
+		for (Pixel p : this.pixeles)
+		{
+			int tempX = p.getX();
+			p.setX(p.getY());
+			p.setY(tempX);
+			p.setX(Math.abs(p.getX() - this.width + 1));
+		}
+		int temp = this.width;
+		this.width = this.height;
+		this.height = temp;
+	}
+	
+	public void compress()
 	{
 		return;
+	}
+	
+	public void changePixel(Pixel newPix)
+	{
+		for(Pixel p : this.pixeles)
+		{
+			if (newPix.getX() == p.getX() && 
+					newPix.getY() == p.getY())
+				p = newPix;
+		}
 	}
 }
