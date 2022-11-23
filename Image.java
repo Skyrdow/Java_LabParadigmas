@@ -147,4 +147,54 @@ public class Image {
 				p = newPix;
 		}
 	}
+	
+	public String imageToString()
+	{
+		return "ERROR";
+	}
+
+	public ArrayList<Image> depthLayers()
+	{
+		ArrayList<Image> depthList = new ArrayList<Image>();
+		ArrayList<Integer> depths = new ArrayList<Integer>();
+		for (Pixel p : this.pixeles)
+		{
+			depths.add(p.getDepth());
+		}
+		depths.sort(null);
+		ArrayList<Integer> depthsNoClone = new ArrayList<Integer>();
+		int temp = -1;
+		for (Integer i : depths)
+		{
+			if (i != temp)
+			{
+				temp = i;
+				depthsNoClone.add(i);
+			}
+		}
+		
+		for (Integer i : depthsNoClone)
+		{
+			ArrayList<Pixel> depthPixs = new ArrayList<Pixel>();
+			for (Pixel p : this.pixeles)
+			{
+				if (i == p.getDepth())
+				{
+					depthPixs.add(p);
+				}
+				else
+				{
+					depthPixs.add(p.copyToWhite());
+				}
+			}
+			Image depthImg = new Image(this.width, this.height, depthPixs);
+			depthList.add(depthImg);
+		}
+		return depthList;
+	}
+	
+	public void decompress()
+	{
+		return;
+	}
 }

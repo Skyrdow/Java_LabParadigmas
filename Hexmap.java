@@ -1,17 +1,12 @@
-package interfaz;
+package lab4;
 
 import java.util.ArrayList;
 
-public class Pixmap extends Image {
+public class Hexmap extends Image {
 
-	public Pixmap(int width, int height, ArrayList<Pixel> pixeles) {
+	private String compString;
+	public Hexmap(int width, int height, ArrayList<Pixel> pixeles) {
 		super(width, height, pixeles);
-	}
-	
-	
-	public void imgRGBtoHex()
-	{
-		
 	}
 
 	@Override
@@ -20,13 +15,10 @@ public class Pixmap extends Image {
 		ArrayList<String> stringList = new ArrayList<String>();
 		for (Pixel p : this.getPixeles())
 		{
-			stringList.add(Arrays.toString(((Pixrgb) p).getRgb()));
+			stringList.add(((Pixhex) p).getHex());
 		}
 		stringList.sort(null);	// se ordena la lista
-		// se añade un null, ya que el algoritmo de histograma compara 
-		// cuando el elemento de la lista cambia, sin este elemento
-		// extra, el elemento final de la lista no será procesado
-		stringList.add("NULL"); 
+		System.out.println(stringList.toString());
 		String tempStr = stringList.get(0);
 		int tempCont = 0;
 		String maxStr = null;
@@ -52,32 +44,22 @@ public class Pixmap extends Image {
 			}
 			tempStr = s; // se guarda el valor anterior para comparar
 		}
-		char[] rgbChars = maxStr.toCharArray();
-		String maxRgb = "";
-		for (char c : rgbChars)
-		{
-			if (Character.isDigit(c))
-				maxRgb = maxRgb+c;
-			else if (c == ',')
-			{
-				maxRgb = maxRgb + "-";
-			}
-			
-		}
-		
-		String h = maxRgb + "/" + maxCont;
-		return h;
+
+		return maxStr + "/" + tempCont;
 	}
 	
-	public void invertRgb()
+	@Override
+	public void compress()
 	{
-		for (Pixel p : this.pixeles)
+		String compString = this.histogram().split("/", 0)[0];
+		ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
+		for(Pixel p : this.getPixeles())
 		{
-			int[] rgb =  ((Pixrgb) p).getRgb();
-			rgb[0] = Math.abs(rgb[0] - 255);
-			rgb[1] = Math.abs(rgb[1] - 255);
-			rgb[2] = Math.abs(rgb[2] - 255);
-			((Pixrgb) p).setRgb(rgb);
+			if (!compString.equals(((Pixhex)p).getHex()))
+				newPixs.add(p);
 		}
+		this.compString = compString;
+		this.setPixeles(newPixs);
 	}
+	
 }
