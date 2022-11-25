@@ -35,4 +35,19 @@ public class Bitmap extends Image {
 			((Pixbit)p).setBit(Math.abs(((Pixbit)p).getBit() - 1));
 		}
 	}
+	
+	@Override
+	public void compress()
+	{
+		int compBit = Integer.valueOf(this.histogram().split("/", 0)[0]);
+		ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
+		for(Pixel p : this.getPixeles())
+		{
+			if (compBit != ((Pixbit)p).getBit())
+				newPixs.add(p);
+		}
+		this.compBit = compBit;
+		this.setPixeles(newPixs);
+	}
+	
 }

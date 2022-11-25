@@ -39,4 +39,8 @@ public class Pixel
 	public int getTipo() {
 		return -1; // pixel sin tipo
 	}
+	
+	public Pixel copyToWhite() {
+		return null;
+	}
 }

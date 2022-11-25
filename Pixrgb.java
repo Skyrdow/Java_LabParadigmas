@@ -25,4 +25,11 @@ public class Pixrgb extends Pixel
 	public int getTipo() {
 		return 1;
 	}
+	
+	@Override
+	public Pixrgb copyToWhite() {
+		int[] a = {255, 255, 255};
+		Pixrgb newP = new Pixrgb(this.getX(), this.getY(), this.getDepth(), a);
+		return newP;
+	}
 }

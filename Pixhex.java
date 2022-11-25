@@ -21,4 +21,10 @@ public class Pixhex extends Pixel
 		return 2;
 	}
 
+	public Pixhex copyToWhite() {
+		Pixhex newP = new Pixhex(this.getX(), this.getY(), this.getDepth(), "#FFFFFF");
+		return newP;
+	}
+
+
 }

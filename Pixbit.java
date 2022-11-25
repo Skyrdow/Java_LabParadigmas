@@ -22,5 +22,12 @@ public class Pixbit extends Pixel
 		return 0;
 	}
 
+	@Override
+	public Pixbit copyToWhite() {
+		Pixbit newP = new Pixbit(this.getX(), this.getY(), this.getDepth(), 1);
+		return newP;
+	}
+
+
 
 }
