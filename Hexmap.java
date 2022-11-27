@@ -62,4 +62,49 @@ public class Hexmap extends Image {
 		this.setPixeles(newPixs);
 	}
 	
+	@Override
+	public String imageToString()
+	{
+		this.sortPixs();
+		String ret = "";
+		int w = 0;
+		for(Pixel p : this.getPixeles())
+		{
+			ret = ret + ((Pixhex) p).getHex();
+			if (w == this.width - 1)
+			{
+				w = 0;
+				ret = ret + "\n";
+			}
+			else
+			{
+				ret = ret + " ";
+				w++;
+			}
+		}
+		return ret;
+	}
+
+	
+	@Override
+	public void decompress()
+	{
+		ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
+		for (int i = 0; i < this.height; i++)
+		{
+			for (int j = 0; j < this.width; j++)
+			{
+				Pixel p = findPix(j, i);
+				if (p != null)
+				{
+					Pixhex decompressedPix = new Pixhex(j, i, 0, this.compString);
+					newPixs.add(decompressedPix);
+				}
+				else
+					newPixs.add(p);
+			}
+		}
+		this.compString = null;
+		this.setPixeles(newPixs);
+	}
 }

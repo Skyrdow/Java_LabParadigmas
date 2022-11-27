@@ -49,5 +49,50 @@ public class Bitmap extends Image {
 		this.compBit = compBit;
 		this.setPixeles(newPixs);
 	}
+	@Override
+	public String imageToString()
+	{
+		this.sortPixs();
+		String ret = "";
+		int w = 0;
+		for(Pixel p : this.getPixeles())
+		{
+			ret = ret + Integer.toString(((Pixbit) p).getBit());
+			if (w == this.width - 1)
+			{
+				w = 0;
+				ret = ret + "\n";
+			}
+			else
+			{
+				ret = ret + " ";
+				w++;
+			}
+		}
+		return ret;
+	}
+	
+	@Override
+	public void decompress()
+	{
+		ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
+		for (int i = 0; i < this.height; i++)
+		{
+			for (int j = 0; j < this.width; j++)
+			{
+				Pixel p = findPix(j, i);
+				if (p != null)
+				{
+					Pixbit decompressedPix = new Pixbit(j, i, 0, this.compBit);
+					newPixs.add(decompressedPix);
+				}
+				else
+					newPixs.add(p);
+			}
+		}
+		this.compBit = -1;
+		this.setPixeles(newPixs);
+	}
+
 	
 }
