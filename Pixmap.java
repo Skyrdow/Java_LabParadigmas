@@ -80,4 +80,64 @@ public class Pixmap extends Image {
 			((Pixrgb) p).setRgb(rgb);
 		}
 	}
+	/**
+	 * Convierte la imagen a string
+	 * @return (String)
+	 */
+	@Override
+	public String imageToString()
+	{
+		this.sortPixs();
+		String ret = "";
+		int i = 0;
+		for(Pixel p : this.getPixeles())
+		{
+			ret = ret + Arrays.toString(((Pixrgb) p).getRgb());
+			if (i == this.width - 1)
+			{
+				i = 0;
+				ret = ret + "\n";
+			}
+			else
+			{
+				ret = ret + " ";
+				i++;
+			}
+		}
+		return ret;
+	}
+
+	/**
+	 * Rellena los pixeles faltantes con el valor de compresión
+	 */
+	@Override
+	public void decompress()
+	{
+		ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
+		
+		this.sortPixs();
+		int i = 0;
+		int j = 0;
+		for(Pixel p : this.getPixeles())
+		{
+			if (p.getX() == i && p.getY() == j)
+			{
+				Pixrgb decompressedPix = new Pixrgb(j, i, 0, this.compRgb);
+				newPixs.add(decompressedPix);
+			}
+			else
+				newPixs.add(p);
+			
+			if (i == this.width - 1)
+			{
+				i = 0;
+				j++;
+			}
+			else
+				i++;
+		}
+		
+		this.compRgb = null;
+		this.setPixeles(newPixs);
+	}
 }
