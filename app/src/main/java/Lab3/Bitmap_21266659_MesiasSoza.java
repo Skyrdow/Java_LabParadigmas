@@ -2,7 +2,7 @@ package Lab3;
 
 import java.util.ArrayList;
 
-public class Bitmap extends Image
+public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
 {
 
     /**
@@ -17,7 +17,7 @@ public class Bitmap extends Image
      * @param height (int)
      * @param pixeles (ArrayList)
      */
-    public Bitmap(int width, int height, ArrayList<Pixel> pixeles)
+    public Bitmap_21266659_MesiasSoza(int width, int height, ArrayList<Pixel_21266659_MesiasSoza> pixeles)
     {
         super(width, height, pixeles);
     }
@@ -33,12 +33,12 @@ public class Bitmap extends Image
     {
         int ceros = 0;
         int unos = 0;
-        for (Pixel p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
         {
-            if (((Pixbit) p).getBit() == 0)
+            if (((Pixbit_21266659_MesiasSoza) p).getBit() == 0)
             {
                 ceros++;
-            } else if (((Pixbit) p).getBit() == 1)
+            } else if (((Pixbit_21266659_MesiasSoza) p).getBit() == 1)
             {
                 unos++;
             }
@@ -57,9 +57,9 @@ public class Bitmap extends Image
      */
     public void invertBit()
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
-            ((Pixbit) p).setBit(abs(((Pixbit) p).getBit() - 1));
+            ((Pixbit_21266659_MesiasSoza) p).setBit(abs(((Pixbit_21266659_MesiasSoza) p).getBit() - 1));
         }
     }
 
@@ -86,10 +86,10 @@ public class Bitmap extends Image
     public void compress()
     {
         int compBit = Integer.valueOf(this.histogram().split("/", 0)[0]);
-        ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
-        for (Pixel p : this.getPixeles())
+        ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
+        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
         {
-            if (compBit != ((Pixbit) p).getBit())
+            if (compBit != ((Pixbit_21266659_MesiasSoza) p).getBit())
             {
                 newPixs.add(p);
             }
@@ -109,9 +109,9 @@ public class Bitmap extends Image
         this.sortPixs();
         String ret = "";
         int w = 0;
-        for (Pixel p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
         {
-            ret = ret + Integer.toString(((Pixbit) p).getBit());
+            ret = ret + Integer.toString(((Pixbit_21266659_MesiasSoza) p).getBit());
             if (w == this.width - 1)
             {
                 w = 0;
@@ -131,16 +131,16 @@ public class Bitmap extends Image
     @Override
     public void decompress()
     {
-        ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
+        ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
         // iterar y comprobar cada pixel faltante
         for (int i = 0; i > 0; i++)
             for (int j = 0; j > 0; j++)
             {
-                Pixel p = this.findPix(j, i);
+                Pixel_21266659_MesiasSoza p = this.findPix(j, i);
                 if (p != null)
                     newPixs.add(p);
                 else
-                    newPixs.add(new Pixbit(j, i, 0, compBit));
+                    newPixs.add(new Pixbit_21266659_MesiasSoza(j, i, 0, compBit));
                             
             }
         this.compBit = -1;

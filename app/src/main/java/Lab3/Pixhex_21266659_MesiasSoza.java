@@ -4,7 +4,7 @@ package Lab3;
  * Clase pixhex, subclase de pixel que guarda una String
  *
  */
-public class Pixhex extends Pixel
+public class Pixhex_21266659_MesiasSoza extends Pixel_21266659_MesiasSoza
 {
 
     /**
@@ -40,7 +40,7 @@ public class Pixhex extends Pixel
      * @param depth Valor de profundidad del pixel
      * @param hex Valor de color (String) de formato "#RRGGBB"
      */
-    public Pixhex(int x, int y, int depth, String hex)
+    public Pixhex_21266659_MesiasSoza(int x, int y, int depth, String hex)
     {
         super(x, y, depth);
         this.hex = hex;
@@ -59,11 +59,11 @@ public class Pixhex extends Pixel
     /**
      * Retorna un pixel idéntico, pero en color blanco
      *
-     * @return Pixhex
+     * @return Pixhex_21266659_MesiasSoza
      */
-    public Pixhex copyToWhite()
+    public Pixhex_21266659_MesiasSoza copyToWhite()
     {
-        Pixhex newP = new Pixhex(this.getX(), this.getY(), this.getDepth(), "#FFFFFF");
+        Pixhex_21266659_MesiasSoza newP = new Pixhex_21266659_MesiasSoza(this.getX(), this.getY(), this.getDepth(), "#FFFFFF");
         return newP;
     }
 

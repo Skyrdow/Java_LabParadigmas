@@ -5,16 +5,11 @@ import java.util.ArrayList;
 /**
  * Interfaz para imagen, requerimiento del laboratorio
  */
-public interface IImage
+public interface IImage_21266659_MesiasSoza
 {
-
-    public int width = 0;
-    public int height = 0;
-    public ArrayList<Pixel> pixeles = new ArrayList<Pixel>();
+    public ArrayList<Pixel_21266659_MesiasSoza> getPixeles();
     
-    public ArrayList<Pixel> getPixeles();
-    
-    public void setPixeles(ArrayList<Pixel> pixeles);
+    public void setPixeles(ArrayList<Pixel_21266659_MesiasSoza> pixeles);
 
     public void sortPixs();
 
@@ -38,11 +33,11 @@ public interface IImage
 
     public void compress();
 
-    public void changePixel(Pixel newPix);
+    public void changePixel(Pixel_21266659_MesiasSoza newPix);
 
     public String imageToString();
 
-    public ArrayList<Image> depthLayers();
+    public ArrayList<Image_21266659_MesiasSoza> depthLayers();
 
     public void decompress();
 }

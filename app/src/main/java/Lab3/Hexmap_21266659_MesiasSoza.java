@@ -1,36 +1,25 @@
 package Lab3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class Pixmap extends Image
+public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
 {
 
     /**
      * Valor de compresión
      */
-    private int[] compRgb;
+    private String compString;
 
     /**
-     * Constructor pixmap
+     * Constructor hexmap
      *
      * @param width (int)
      * @param height (int)
      * @param pixeles (ArrayList)
      */
-    public Pixmap(int width, int height, ArrayList<Pixel> pixeles)
+    public Hexmap_21266659_MesiasSoza(int width, int height, ArrayList<Pixel_21266659_MesiasSoza> pixeles)
     {
         super(width, height, pixeles);
-    }
-
-    /**
-     * Transforma el pixmap a hexmap
-     *
-     * @return (Hexmap)
-     */
-    public Image imgRGBtoHex()
-    {
-        return this;
     }
 
     /**
@@ -43,24 +32,20 @@ public class Pixmap extends Image
     public String histogram()
     {
         ArrayList<String> stringList = new ArrayList<String>();
-        for (Pixel p : this.getPixeles())
+        // Obtener lista de colores
+        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
         {
-            stringList.add(Arrays.toString(((Pixrgb) p).getRgb()));
+            stringList.add(((Pixhex_21266659_MesiasSoza) p).getHex());
         }
         stringList.sort(null);	// se ordena la lista
-        // se añade un null, ya que el algoritmo de histograma compara 
-        // cuando el elemento de la lista cambia, sin este elemento
-        // extra, el elemento final de la lista no será procesado
-        stringList.add("NULL");
         String tempStr = stringList.get(0);
         int tempCont = 0;
-        String maxStr = "";
+        String maxStr = null;
         int maxCont = -1;
         // se itera en la lista de strings ordenada
         for (String s : stringList)
         {
-            // si el valor no cambia aumenta el contador
-            if (s.equals(tempStr))
+            if (s.equals(tempStr)) // si el valor no cambia aumenta el contador
             {
                 tempCont++;
             } else // si cambió el valor con respecto al anterior:
@@ -77,37 +62,14 @@ public class Pixmap extends Image
             }
             tempStr = s; // se guarda el valor anterior para comparar
         }
-        char[] rgbChars = maxStr.toCharArray();
-        String maxRgb = "";
-        for (char c : rgbChars)
+        if (tempCont >= maxCont)
         {
-            if (Character.isDigit(c))
-            {
-                maxRgb = maxRgb + c;
-            } else if (c == ',')
-            {
-                maxRgb = maxRgb + "-";
-            }
-
+            // se actualiza el más repetido
+            maxCont = tempCont;
+            maxStr = tempStr;
         }
 
-        String h = maxRgb + "/" + maxCont;
-        return h;
-    }
-
-    /**
-     * Invierte los valores de color de la imagen
-     */
-    public void invertRgb()
-    {
-        for (Pixel p : this.pixeles)
-        {
-            int[] rgb = ((Pixrgb) p).getRgb();
-            rgb[0] = 255 - rgb[0];
-            rgb[1] = 255 - rgb[1];
-            rgb[2] = 255 - rgb[2];
-            ((Pixrgb) p).setRgb(rgb);
-        }
+        return maxStr + "/" + tempCont;
     }
 
     /**
@@ -117,24 +79,18 @@ public class Pixmap extends Image
     @Override
     public void compress()
     {
-        // Transformar de String "RRR-GGG-BBB/COUNT" a int[]
-        String histogramStr = this.histogram().split("/", 0)[0];
-        String[] rgbStr = histogramStr.split("-", 0);
-        int[] compRgb =
+        // Extraer el color
+        String compString = this.histogram().split("/", 0)[0];
+        ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
+        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
         {
-            Integer.valueOf(rgbStr[0]),
-            Integer.valueOf(rgbStr[1]), Integer.valueOf(rgbStr[2])
-        };
-
-        ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
-        for (Pixel p : this.getPixeles())
-        {
-            if (!Arrays.equals(compRgb, ((Pixrgb) p).getRgb()))
+            // Si no es el color a comprimir, se conserva
+            if (!compString.equals(((Pixhex_21266659_MesiasSoza) p).getHex()))
             {
                 newPixs.add(p);
             }
         }
-        this.compRgb = compRgb;
+        this.compString = compString;
         this.setPixeles(newPixs);
     }
 
@@ -148,18 +104,18 @@ public class Pixmap extends Image
     {
         this.sortPixs();
         String ret = "";
-        int i = 0;
-        for (Pixel p : this.getPixeles())
+        int w = 0;
+        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
         {
-            ret = ret + Arrays.toString(((Pixrgb) p).getRgb());
-            if (i == this.width - 1)
+            ret = ret + ((Pixhex_21266659_MesiasSoza) p).getHex();
+            if (w == this.width - 1)
             {
-                i = 0;
+                w = 0;
                 ret = ret + "\n";
             } else
             {
                 ret = ret + " ";
-                i++;
+                w++;
             }
         }
         return ret;
@@ -171,19 +127,19 @@ public class Pixmap extends Image
     @Override
     public void decompress()
     {
-        ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
+        ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
         // iterar y comprobar cada pixel faltante
         for (int i = 0; i > 0; i++)
             for (int j = 0; j > 0; j++)
             {
-                Pixel p = this.findPix(j, i);
+                Pixel_21266659_MesiasSoza p = this.findPix(j, i);
                 if (p != null)
                     newPixs.add(p);
                 else
-                    newPixs.add(new Pixrgb(j, i, 0, compRgb));
+                    newPixs.add(new Pixhex_21266659_MesiasSoza(j, i, 0, compString));
                             
             }
-        this.compRgb = null;
+        this.compString = null;
         this.setPixeles(newPixs);
     }
 }

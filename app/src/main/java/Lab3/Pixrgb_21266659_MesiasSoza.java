@@ -4,7 +4,7 @@ package Lab3;
  * Clase pixrgb, subclase de pixel que almacena 3 valores de 0 a 255
  *
  */
-public class Pixrgb extends Pixel
+public class Pixrgb_21266659_MesiasSoza extends Pixel_21266659_MesiasSoza
 {
     /**
      * Valor de color almacenado
@@ -41,7 +41,7 @@ public class Pixrgb extends Pixel
      * @param depth Valor de profundidad del pixel
      * @param rgb (int[3]) Valores de color de 0 a 255
      */
-    public Pixrgb(int x, int y, int depth, int[] rgb)
+    public Pixrgb_21266659_MesiasSoza(int x, int y, int depth, int[] rgb)
     {
         super(x, y, depth);
         this.rgb[0] = rgb[0];
@@ -66,13 +66,13 @@ public class Pixrgb extends Pixel
      * @return Pixbit
      */
     @Override
-    public Pixrgb copyToWhite()
+    public Pixrgb_21266659_MesiasSoza copyToWhite()
     {
         int[] a =
         {
             255, 255, 255
         };
-        Pixrgb newP = new Pixrgb(this.getX(), this.getY(), this.getDepth(), a);
+        Pixrgb_21266659_MesiasSoza newP = new Pixrgb_21266659_MesiasSoza(this.getX(), this.getY(), this.getDepth(), a);
         return newP;
     }
 }

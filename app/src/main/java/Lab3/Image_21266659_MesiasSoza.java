@@ -10,7 +10,7 @@ import java.util.Comparator;
  * @author skyrdow
  *
  */
-public class Image implements IImage
+public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
 {
 
     /**
@@ -24,14 +24,14 @@ public class Image implements IImage
     /**
      * Lista de pixeles de la imagen
      */
-    public ArrayList<Pixel> pixeles = new ArrayList<Pixel>();
+    public ArrayList<Pixel_21266659_MesiasSoza> pixeles = new ArrayList<Pixel_21266659_MesiasSoza>();
 
     /**
      * Getter de la lista de pixeles
      *
      * @return Lista de pixeles (ArrayList)
      */
-    public ArrayList<Pixel> getPixeles()
+    public ArrayList<Pixel_21266659_MesiasSoza> getPixeles()
     {
         return pixeles;
     }
@@ -41,7 +41,7 @@ public class Image implements IImage
      *
      * @param pixeles (ArrayList)
      */
-    public void setPixeles(ArrayList<Pixel> pixeles)
+    public void setPixeles(ArrayList<Pixel_21266659_MesiasSoza> pixeles)
     {
         this.pixeles = pixeles;
     }
@@ -53,7 +53,7 @@ public class Image implements IImage
      * @param height (int)
      * @param pixeles (ArrayList)
      */
-    public Image(int width, int height, ArrayList<Pixel> pixeles)
+    public Image_21266659_MesiasSoza(int width, int height, ArrayList<Pixel_21266659_MesiasSoza> pixeles)
     {
         this.width = width;
         this.height = height;
@@ -66,14 +66,21 @@ public class Image implements IImage
      * @param y Coordenada Y
      * @return Si existe el pixel lo retorna, sino retorna null
      */
-    protected Pixel findPix(int x, int y)
+    protected Pixel_21266659_MesiasSoza findPix(int x, int y)
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (p.getX() == x && p.getY() == y)
                 return p;
         }
         return null;
+    }
+    
+    private int abs(int x)
+    {
+        if (x >= 0)
+            return x;
+        return -x;
     }
     /**
      * Ordena los pixeles de la imagen
@@ -81,7 +88,7 @@ public class Image implements IImage
     public void sortPixs()
     {
         Collections.sort(this.pixeles,
-                Comparator.comparing(Pixel::getY).thenComparing(Pixel::getX));
+                Comparator.comparing(Pixel_21266659_MesiasSoza::getY).thenComparing(Pixel_21266659_MesiasSoza::getX));
     }
 
     /**
@@ -91,7 +98,7 @@ public class Image implements IImage
      */
     public boolean isBitmap()
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (p.getTipo() != 0)
             {
@@ -108,7 +115,7 @@ public class Image implements IImage
      */
     public boolean isPixmap()
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (p.getTipo() != 1)
             {
@@ -125,7 +132,7 @@ public class Image implements IImage
      */
     public boolean isHexmap()
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (p.getTipo() != 2)
             {
@@ -145,9 +152,9 @@ public class Image implements IImage
     {
         if (this.pixeles.size() == (this.height * this.width))
         {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**
@@ -155,9 +162,9 @@ public class Image implements IImage
      */
     public void flipH()
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
-            p.setX(p.getX() - this.width + 1);
+            p.setX(abs(p.getX() - this.width + 1));
         }
     }
 
@@ -166,9 +173,9 @@ public class Image implements IImage
      */
     public void flipV()
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
-            p.setY(p.getY() - this.height + 1);
+            p.setY(abs(p.getY() - this.height + 1));
         }
     }
 
@@ -176,15 +183,15 @@ public class Image implements IImage
      * Elimina los pixeles que se encuentran fuera del cuadrado delimitado por
      * los puntos (x1,y1) y (x2,y2)
      *
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param x1 Coordenada x del punto 1
+     * @param y1 Coordenada y del punto 1
+     * @param x2 Coordenada x del punto 2
+     * @param y2 Coordenada y del punto 2
      */
     public void crop(int x1, int y1, int x2, int y2)
     {
-        ArrayList<Pixel> newPixs = new ArrayList<Pixel>();
-        for (Pixel p : this.pixeles)
+        ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (x1 <= p.getX() && p.getX() <= x2
                     && y1 <= p.getY() && p.getY() <= y2)
@@ -212,12 +219,12 @@ public class Image implements IImage
      */
     public void rotate90()
     {
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             int tempX = p.getX();
             p.setX(p.getY());
             p.setY(tempX);
-            p.setX(Math.abs(p.getX() - this.width + 1));
+            p.setX(abs(p.getX() - this.width + 1));
         }
         int temp = this.width;
         this.width = this.height;
@@ -234,18 +241,19 @@ public class Image implements IImage
     /**
      * Intercambia un pixel de la lista con el pixel de entrada
      *
-     * @param Pixel a intercambiar (Pixel)
+     * @param newPix Pixel_21266659_MesiasSoza a intercambiar (Pixel_21266659_MesiasSoza)
      */
-    public void changePixel(Pixel newPix)
+    public void changePixel(Pixel_21266659_MesiasSoza newPix)
     {
-        for (Pixel p : this.pixeles)
+        ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<>();
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
-            if (newPix.getX() == p.getX()
-                    && newPix.getY() == p.getY())
-            {
-                p = newPix;
-            }
+            if (newPix.getX() == p.getX() && newPix.getY() == p.getY())
+                newPixs.add(newPix);
+            else
+                newPixs.add(p);
         }
+        this.setPixeles(newPixs);
     }
 
     /**
@@ -262,13 +270,13 @@ public class Image implements IImage
      *
      * @return Lista de imagenes (ArrayList)
      */
-    public ArrayList<Image> depthLayers()
+    public ArrayList<Image_21266659_MesiasSoza> depthLayers()
     {
-        ArrayList<Image> depthList = new ArrayList<Image>();
+        ArrayList<Image_21266659_MesiasSoza> depthList = new ArrayList<Image_21266659_MesiasSoza>();
         // Obtener la lista de las profundidades presentes
         // en la imagen sin repetición
         ArrayList<Integer> depths = new ArrayList<Integer>();
-        for (Pixel p : this.pixeles)
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             depths.add(p.getDepth());
         }
@@ -287,8 +295,8 @@ public class Image implements IImage
         // Generar las capas
         for (Integer i : depthsNoClone)
         {
-            ArrayList<Pixel> depthPixs = new ArrayList<Pixel>();
-            for (Pixel p : this.pixeles)
+            ArrayList<Pixel_21266659_MesiasSoza> depthPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
+            for (Pixel_21266659_MesiasSoza p : this.pixeles)
             {
                 // Si el pixel es de la capa se almacena, sino
                 // se cambia por uno blanco
@@ -300,7 +308,7 @@ public class Image implements IImage
                     depthPixs.add(p.copyToWhite());
                 }
             }
-            Image depthImg = new Image(this.width, this.height, depthPixs);
+            Image_21266659_MesiasSoza depthImg = new Image_21266659_MesiasSoza(this.width, this.height, depthPixs);
             depthList.add(depthImg);
         }
         return depthList;

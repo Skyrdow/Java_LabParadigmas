@@ -4,7 +4,7 @@ package Lab3;
  * Clase pixbit, subclase de pixel que guarda un bit
  *
  */
-public class Pixbit extends Pixel
+public class Pixbit_21266659_MesiasSoza extends Pixel_21266659_MesiasSoza
 {
     /**
      * Valor de color almacenado
@@ -39,7 +39,7 @@ public class Pixbit extends Pixel
      * @param depth Valor de profundidad del pixel
      * @param bit Valor de color 0 o 1
      */
-    public Pixbit(int x, int y, int depth, int bit)
+    public Pixbit_21266659_MesiasSoza(int x, int y, int depth, int bit)
     {
         super(x, y, depth);
         this.bit = bit;
@@ -59,12 +59,12 @@ public class Pixbit extends Pixel
     /**
      * Retorna un pixel idéntico, pero en color blanco
      *
-     * @return Pixbit
+     * @return Pixbit_21266659_MesiasSoza
      */
     @Override
-    public Pixbit copyToWhite()
+    public Pixbit_21266659_MesiasSoza copyToWhite()
     {
-        Pixbit newP = new Pixbit(this.getX(), this.getY(), this.getDepth(), 1);
+        Pixbit_21266659_MesiasSoza newP = new Pixbit_21266659_MesiasSoza(this.getX(), this.getY(), this.getDepth(), 1);
         return newP;
     }
 

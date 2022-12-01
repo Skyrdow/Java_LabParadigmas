@@ -3,27 +3,30 @@ package Lab3;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu
+public class Menu_21266659_MesiasSoza
 {
 
     Scanner sc;
     private String menu1 = "\nOpciones:\n" + "1.Crear Imagen\n" + 
-            "2.Modificar Imagen\n" + "3.Visualizar Imagen\n";
+            "2.Modificar Imagen\n" + "3.Visualizar Imagen\n" + 
+            "4.Imagen Bitmap Predeterminada\n" + 
+            "5.Imagen Pixmap Predeterminada\n" + 
+            "6.Imagen Hexmap Predeterminada\n";
     private String preg = "Introduzca su opción:";
     private String menuCrearTam = "Introduzca el tamaño:";
     private String menuCrear = "Seleccione el tipo de imagen:\n1.Bitmap\n2.Pixmap\n3.Hexmap\n";
     private String imgError1 = "Imagen no creada\n";
     private String imgCreada = "Imagen creada:\n";
-    private String menuMod = "1.Flip Horizontal\n" + "2.Flip Horizontal\n" +
+    private String menuMod = "1.Flip Horizontal\n" + "2.Flip Vertical\n" +
             "3.Recortar\n" + "4.Rotar 90 grados\n" +
             "5.Histograma (Color que más se reptite)\n" + "6.Comprimir\n" +
             "7.Cambiar Pixel\n" + "8.Capas de Profundidad\n" + 
             "9.Descomprimir\n" + "10.Invertir Bits\n" + "11.Invertir RGB\n" +
             "12.Comprobar Bitmap\n" + "13.Comprobar Pixmap\n" +
-            "14.Comprobar Hexmap\n";
+            "14.Comprobar Hexmap\n" + "13.Transformar Pixmap a Hexmap\n";
     private String imgError2 = "No es posible aplicar la modificación\n";
 
-    public Menu()
+    public Menu_21266659_MesiasSoza()
     {
         this.sc = new Scanner(System.in);
     }
@@ -49,7 +52,7 @@ public class Menu
 
     public void menu()
     {
-        IImage img = null;
+        IImage_21266659_MesiasSoza img = null;
         while (true)
         {
             print(menu1);
@@ -61,12 +64,9 @@ public class Menu
                     break;
                 case 2:
                     if (img == null)
-                    {
                         print(imgError1);
-                    } else
-                    {
+                    else
                         img = menuModificar(img);
-                    }
                     break;
                 case 3:
                     if (img == null)
@@ -76,24 +76,28 @@ public class Menu
                     {
                         if (img.isBitmap())
                         {
-                            print(((Bitmap) img).imageToString());
+                            print(((Bitmap_21266659_MesiasSoza) img).imageToString());
                         }
                         if (img.isPixmap())
                         {
-                            print(((Pixmap) img).imageToString());
+                            print(((Pixmap_21266659_MesiasSoza) img).imageToString());
                         }
                         if (img.isHexmap())
                         {
-                            print((img).imageToString());
+                            print(((Hexmap_21266659_MesiasSoza) img).imageToString());
                         }
                     }
+                    break;
+                case 6:
+                    img = imagenHex();
+                    break;
             }
         }
     }
 
-    private IImage menuCrearImg()
+    private IImage_21266659_MesiasSoza menuCrearImg()
     {
-        ArrayList<Pixel> pixeles = new ArrayList<Pixel>();
+        ArrayList<Pixel_21266659_MesiasSoza> pixeles = new ArrayList<Pixel_21266659_MesiasSoza>();
         print(menuCrearTam);
         int height = input("Introducir Alto:");
         int width = input("Introducir Ancho:");
@@ -101,7 +105,7 @@ public class Menu
         print("\n" + menuCrear);
         switch (input(preg))
         {
-            case 1: // Bitmap
+            case 1: // Bitmap_21266659_MesiasSoza
                 int bit;
                 for (int i = 0; i < height; i++)
                 {
@@ -110,11 +114,11 @@ public class Menu
                         pedirPixs(j, i);
                         bit = input("Introducir bit:");
                         depth = input("Introducir depth:");
-                        pixeles.add(new Pixbit(j, i, depth, bit));
+                        pixeles.add(new Pixbit_21266659_MesiasSoza(j, i, depth, bit));
                     }
                 }
-                return new Bitmap(width, height, pixeles);
-            case 2: // Pixmap
+                return new Bitmap_21266659_MesiasSoza(width, height, pixeles);
+            case 2: // Pixmap_21266659_MesiasSoza
                 int[] rgb = new int[3];
                 for (int i = 0; i < height; i++)
                 {
@@ -125,11 +129,11 @@ public class Menu
                         rgb[1] = input("Introducir G:");
                         rgb[2] = input("Introducir B:");
                         depth = input("Introducir depth:");
-                        pixeles.add(new Pixrgb(j, i, depth, rgb));
+                        pixeles.add(new Pixrgb_21266659_MesiasSoza(j, i, depth, rgb));
                     }
                 }
-                return new Pixmap(width, height, pixeles);
-            case 3: // Hexmap
+                return new Pixmap_21266659_MesiasSoza(width, height, pixeles);
+            case 3: // Hexmap_21266659_MesiasSoza
                 String hex;
                 for (int i = 0; i < height; i++)
                 {
@@ -139,16 +143,16 @@ public class Menu
                         System.out.print("Introducir hex (incluyendo \"#\"): ");
                         hex = sc.nextLine();
                         depth = input("Introducir depth:");
-                        pixeles.add(new Pixhex(j, i, depth, hex));
+                        pixeles.add(new Pixhex_21266659_MesiasSoza(j, i, depth, hex));
                     }
                 }
-                return new Hexmap(width, height, pixeles);
+                return new Hexmap_21266659_MesiasSoza(width, height, pixeles);
             default:
                 return null;
         }
     }
 
-    private IImage menuModificar(IImage img)
+    private IImage_21266659_MesiasSoza menuModificar(IImage_21266659_MesiasSoza img)
     {
         print(menuMod);
         switch (input(preg))
@@ -179,15 +183,15 @@ public class Menu
                 print("El color que más se repite es:");
                 if (img.isBitmap())
                 {
-                    histo = ((Bitmap) img).histogram().split("/", 0);
+                    histo = ((Bitmap_21266659_MesiasSoza) img).histogram().split("/", 0);
                 }
                 if (img.isPixmap())
                 {
-                    histo = ((Pixmap) img).histogram().split("/", 0);
+                    histo = ((Pixmap_21266659_MesiasSoza) img).histogram().split("/", 0);
                 }
                 if (img.isHexmap())
                 {
-                    histo = ((Hexmap) img).histogram().split("/", 0);
+                    histo = ((Hexmap_21266659_MesiasSoza) img).histogram().split("/", 0);
                 }
                 print(histo[0] + " con un total de " + histo[1]
                         + " repeticiones");
@@ -209,8 +213,7 @@ public class Menu
                 if (img.isBitmap())
                 {
                     int bit = input("Ingresar bit:");
-                    img.changePixel(new Pixbit(x, y, depth, bit));
-                    return img;
+                    img.changePixel(new Pixbit_21266659_MesiasSoza(x, y, depth, bit));
                 }
                 if (img.isPixmap())
                 {
@@ -218,38 +221,35 @@ public class Menu
                     rgb[0] = input("Introducir R:");
                     rgb[1] = input("Introducir G:");
                     rgb[2] = input("Introducir B:");
-                    img.changePixel(new Pixrgb(x, y, depth, rgb));
+                    img.changePixel(new Pixrgb_21266659_MesiasSoza(x, y, depth, rgb));
                 }
                 if (img.isHexmap())
                 {
                     print("Introducir hex (incluyendo \"#\"):");
                     String hex = sc.nextLine();
-                    img.changePixel(new Pixhex(x, y, depth, hex));
-                    return img;
+                    img.changePixel(new Pixhex_21266659_MesiasSoza(x, y, depth, hex));
                 }
-                break;
+                return img;
             case 8:
                 if (img.isBitmap())
                 {
-                    for (IImage imgD : img.depthLayers())
+                    for (IImage_21266659_MesiasSoza imgD : img.depthLayers())
                     {
-                        Bitmap bitD = new Bitmap(imgD.width,
-                                imgD.height, imgD.getPixeles());
-                        print((bitD).imageToString());
+                        print(((Bitmap_21266659_MesiasSoza) imgD).imageToString());
                     }
                 }
                 if (img.isPixmap())
                 {
-                    for (IImage imgD : img.depthLayers())
+                    for (IImage_21266659_MesiasSoza imgD : img.depthLayers())
                     {
-                        print(((Pixmap) imgD).imageToString());
+                        print(((Pixmap_21266659_MesiasSoza) imgD).imageToString());
                     }
                 }
                 if (img.isHexmap())
                 {
-                    for (Image imgD : img.depthLayers())
+                    for (IImage_21266659_MesiasSoza imgD : img.depthLayers())
                     {
-                        print(((Hexmap) imgD).imageToString());
+                        print(((Hexmap_21266659_MesiasSoza) imgD).imageToString());
                     }
                 }
                 return img;
@@ -262,7 +262,7 @@ public class Menu
             case 10:
                 if (img.isBitmap())
                 {
-                    ((Bitmap) img).invertBit();
+                    ((Bitmap_21266659_MesiasSoza) img).invertBit();
                 } else
                 {
                     print(imgError2);
@@ -271,7 +271,7 @@ public class Menu
             case 11:
                 if (img.isPixmap())
                 {
-                    ((Pixmap) img).invertRgb();
+                    ((Pixmap_21266659_MesiasSoza) img).invertRgb();
                 } else
                 {
                     print(imgError2);
@@ -304,6 +304,11 @@ public class Menu
                     print("La imagen NO es de tipo Hexmap");
                 }
                 return img;
+            case 15:
+                if (img.isPixmap())
+                    img = ((Pixmap_21266659_MesiasSoza)img).imgRGBtoHex();
+                else
+                    print(imgError2);
             default:
                 break;
         }
@@ -311,18 +316,47 @@ public class Menu
 
     }
 
-    public Image imagen1()
+    public IImage_21266659_MesiasSoza imagenHex()
     {
         
-        ArrayList<Pixel> pixs = new ArrayList<Pixel>();
+        ArrayList<Pixel_21266659_MesiasSoza> pixs = new ArrayList<Pixel_21266659_MesiasSoza>();
 
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                pixs.add(new Pixhex(j, i, 0, "#FFAA"+i+j));
+                pixs.add(new Pixhex_21266659_MesiasSoza(j, i, 0, "#FFAA"+i+j));
             }
         }
-        return new Hexmap(3,3,pixs);
+        return new Hexmap_21266659_MesiasSoza(3,3,pixs);
+    }
+    public IImage_21266659_MesiasSoza imagenBit()
+    {
+        
+        ArrayList<Pixel_21266659_MesiasSoza> pixs = new ArrayList<Pixel_21266659_MesiasSoza>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                pixs.add(new Pixhex_21266659_MesiasSoza(j, i, 0, "#FFAA"+i+j));
+            }
+        }
+        return new Hexmap_21266659_MesiasSoza(3,3,pixs);
+    }
+    
+    public IImage_21266659_MesiasSoza imagenRgb()
+    {
+        
+        ArrayList<Pixel_21266659_MesiasSoza> pixs = new ArrayList<Pixel_21266659_MesiasSoza>();
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                pixs.add(new Pixhex_21266659_MesiasSoza(j, i, 0, "#FFAA"+i+j));
+            }
+        }
+        return new Hexmap_21266659_MesiasSoza(3,3,pixs);
     }
 }

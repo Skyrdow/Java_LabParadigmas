@@ -4,7 +4,7 @@ package Lab3;
  * Clase principal pixel, de la cual heredan los diferentes tipos de pixeles
  *
  */
-abstract class Pixel
+abstract class Pixel_21266659_MesiasSoza
 {
 
     /**
@@ -27,7 +27,7 @@ abstract class Pixel
      * @param y Coordenada Y del pixel, entero positivo
      * @param depth Valor de profundidad del pixel, va del 0 al 255
      */
-    public Pixel(int x, int y, int depth)
+    public Pixel_21266659_MesiasSoza(int x, int y, int depth)
     {
         this.x = x;
         this.y = y;
@@ -46,7 +46,7 @@ abstract class Pixel
 
     /**
      * Setter de la coordenada X del pixel
-     *
+     *  @param x Coordenada x del pixel (int)
      */
     public void setX(int x)
     {
@@ -64,8 +64,8 @@ abstract class Pixel
     }
 
     /**
-     * Setter de la coordenada X del pixel
-     *
+     * Setter de la coordenada y del pixel
+     * @param y Coordenada y del pixel
      */
     public void setY(int y)
     {
@@ -84,7 +84,7 @@ abstract class Pixel
 
     /**
      * Setter de la profundidad del pixel
-     *
+     *  @param depth Profundidad
      */
     public void setDepth(int depth)
     {
@@ -107,7 +107,7 @@ abstract class Pixel
      *
      * @return (null) pixel sin tipo no tiene color
      */
-    public Pixel copyToWhite()
+    public Pixel_21266659_MesiasSoza copyToWhite()
     {
         return null;
     }
