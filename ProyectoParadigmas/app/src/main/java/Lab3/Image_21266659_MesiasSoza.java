@@ -27,26 +27,6 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
     public ArrayList<Pixel_21266659_MesiasSoza> pixeles = new ArrayList<Pixel_21266659_MesiasSoza>();
 
     /**
-     * Getter de la lista de pixeles
-     *
-     * @return Lista de pixeles (ArrayList)
-     */
-    public ArrayList<Pixel_21266659_MesiasSoza> getPixeles()
-    {
-        return pixeles;
-    }
-
-    /**
-     * Setter de pixeles
-     *
-     * @param pixeles (ArrayList)
-     */
-    public void setPixeles(ArrayList<Pixel_21266659_MesiasSoza> pixeles)
-    {
-        this.pixeles = pixeles;
-    }
-
-    /**
      * Constructor de la imagen
      *
      * @param width (int)
@@ -143,7 +123,7 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
     }
 
     /**
-     * Revisa si la imagen esta comprimida según la cantidad de pixeles que
+     * Revisa si la imagen esta comprimida segï¿½n la cantidad de pixeles que
      * contiene
      *
      * @return (boolean)
@@ -199,13 +179,13 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
                 newPixs.add(p);
             }
         }
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
         this.width = (x2 - x1 + 1);
         this.height = (y2 - y1 + 1);
     }
 
     /**
-     * Función que debe ser implementada en las clases que la hereden
+     * Funciï¿½n que debe ser implementada en las clases que la hereden
      *
      * @return String de formato "Color/Cantidad"(String)
      */
@@ -232,7 +212,7 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
     }
 
     /**
-     * Función que debe ser implementada en las clases heredadas
+     * Funciï¿½n que debe ser implementada en las clases heredadas
      */
     public void compress()
     {
@@ -253,11 +233,11 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
             else
                 newPixs.add(p);
         }
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
     }
 
     /**
-     * Función que debe ser implementada en las clases heredadas
+     * Funciï¿½n que debe ser implementada en las clases heredadas
      */
     public String imageToString()
     {
@@ -270,11 +250,11 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
      *
      * @return Lista de imagenes (ArrayList)
      */
-    public ArrayList<Image_21266659_MesiasSoza> depthLayers()
+    public ArrayList<IImage_21266659_MesiasSoza> depthLayers()
     {
-        ArrayList<Image_21266659_MesiasSoza> depthList = new ArrayList<Image_21266659_MesiasSoza>();
+        ArrayList<IImage_21266659_MesiasSoza> depthList = new ArrayList<IImage_21266659_MesiasSoza>();
         // Obtener la lista de las profundidades presentes
-        // en la imagen sin repetición
+        // en la imagen sin repeticiï¿½n
         ArrayList<Integer> depths = new ArrayList<Integer>();
         for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
@@ -315,7 +295,7 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
     }
 
     /**
-     * Función que debe ser implementada en las clases heredadas
+     * Funciï¿½n que debe ser implementada en las clases heredadas
      */
     public void decompress()
     {

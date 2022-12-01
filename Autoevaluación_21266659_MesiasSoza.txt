@@ -1,0 +1,21 @@
+Requerimientos funcionales | Nota
+Clases y TDAs                1
+Menu                         1
+image                        1
+IsBitmap                     1
+IsPixmap                     1
+IsHexmap                     1
+IsCompressed                 1
+FlipH                        1
+FlipV                        1
+Crop                         1
+imgRGBToHex                  1
+Histogram                    1
+Rotate90                     1
+Compress                     1
+ChangePixel                  1
+InvertColorBit               1
+InvertColorRGB               1
+ToString                     1
+DepthLayers                  1
+Decompress                   1

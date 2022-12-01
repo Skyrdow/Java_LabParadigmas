@@ -2,11 +2,15 @@ package Lab3;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que hereda de imagen y sobreescribe los metodos que dependen del tipo
+ * de imagen específico. Se usa un 0 o 1 para el valor de color.
+ */
 public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
 {
 
     /**
-     * Valor de compresión
+     * Valor de compresiï¿½n
      */
     private int compBit;
 
@@ -23,7 +27,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Retorna el color que más se repite y la cantidad en una string de formato
+     * Retorna el color que mï¿½s se repite y la cantidad en una string de formato
      * "Color/Cantidad"
      *
      * @return (String)
@@ -33,7 +37,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     {
         int ceros = 0;
         int unos = 0;
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (((Pixbit_21266659_MesiasSoza) p).getBit() == 0)
             {
@@ -64,7 +68,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Función valor absoluto
+     * Funciï¿½n valor absoluto
      *
      * @param x (int
      * @return Valor absoluto de x (int)
@@ -79,7 +83,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Elimina los pixeles del color que más se repite y se almacena color
+     * Elimina los pixeles del color que mï¿½s se repite y se almacena color
      * eliminado
      */
     @Override
@@ -87,7 +91,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     {
         int compBit = Integer.valueOf(this.histogram().split("/", 0)[0]);
         ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (compBit != ((Pixbit_21266659_MesiasSoza) p).getBit())
             {
@@ -95,7 +99,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
             }
         }
         this.compBit = compBit;
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
     }
 
     /**
@@ -109,7 +113,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
         this.sortPixs();
         String ret = "";
         int w = 0;
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             ret = ret + Integer.toString(((Pixbit_21266659_MesiasSoza) p).getBit());
             if (w == this.width - 1)
@@ -126,7 +130,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Rellena los pixeles faltantes con el valor de compresión
+     * Rellena los pixeles faltantes con el valor de compresiï¿½n
      */
     @Override
     public void decompress()
@@ -144,7 +148,7 @@ public class Bitmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
                             
             }
         this.compBit = -1;
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
     }
 
 }

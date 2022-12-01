@@ -1,0 +1,66 @@
+TDA pixel:
+Descripción: Guardan los datos del pixel, tipo, coordenada y profundidad.
+Constructor: x (int) X y (int) X profundidad (int).
+Selectores: No aplica.
+Modificadores: No aplica.
+Pertenencia: getTipo.
+Metodos: copyToWhite.
+
+TDA pixbit:
+Descripción: Tipo de pixel que guarda 1 o 0 en el valor.
+Costructor: x (int) X y (int) X bit (int) X profundidad (int).
+Selectores: getBit.
+Modificadores: setBit.
+Pertenencia: getTipo.
+Metodos: copyToWhite.
+
+TDA pixrgb:
+Descripción: Tipo de pixel que guarda 3 valores enteros en un array.
+Costructor: x (int) X y (int) X r (int) X g (int) X b (int) X profundidad (int).
+Selectores: getRgb.
+Modificadores: setRgb.
+Pertenencia: getTipo.
+Metodos: copyToWhite.
+
+TDA pixhex:
+Descripción: Tipo de pixel que guarda una string que representa un valor hexadecimal en el valor.
+Costructor: x (int) X y (int) X hex (string) X profundidad (int).
+Selectores: getHex.
+Modificadores: setHex.
+Pertenencia: getTipo.
+Metodos: copyToWhite.
+
+TDA imagen: 
+Descripción: Guarda la información de la imagen (tamaño y pixeles) y los pixeles de la misma. 
+Costructor: ancho (int) X alto (int) X pixeles (lista).
+Selectores: No aplica.
+Modificadores: No aplica.
+Pertenencia: IsBitmap, IsPixmap, IsHexmap, IsCompressed.
+Metodos: findPix, sortPixs, flipH, flipV, crop, histogram, rotate90, compress, changePixel, imageToString, depthLayers, decompress
+
+TDA Bitmap: 
+Descripción: Hereda de imagen. Guarda la información de la imagen (tamaño, pixeles y valor de compresión) y los pixeles de la misma. El valor de compresión almacena el color comprimido por la función compress para luego recuperar la imagen original, si este es -1, significa que la imagen no está comprimida.
+Costructor: ancho (int) X alto (int) X pixeles (lista).
+Selectores: No aplica.
+Modificadores: No aplica.
+Metodos: invertBit
+
+TDA Pixmap: 
+Descripción: Hereda de imagen. Guarda la información de la imagen (tamaño, pixeles y valor de compresión) y los pixeles de la misma. El valor de compresión almacena el color comprimido por la función compress para luego recuperar la imagen original, si este es -1, significa que la imagen no está comprimida.
+Costructor: ancho (int) X alto (int) X pixeles (lista).
+Selectores: No aplica.
+Modificadores: No aplica.
+Metodos: invertRGB, imgRGBtoHex
+
+TDA Hexmap: 
+Descripción: Hereda de imagen. Guarda la información de la imagen (tamaño, pixeles y valor de compresión) y los pixeles de la misma. El valor de compresión almacena el color comprimido por la función compress para luego recuperar la imagen original, si este es -1, significa que la imagen no está comprimida.
+Costructor: ancho (int) X alto (int) X pixeles (lista).
+Selectores: No aplica.
+Modificadores: No aplica.
+
+TDA Menu:
+Descripción: Menu interactivo por consola, se utiliza llamando al metodo "menu()"
+Costructor: No recibe parámetros.
+Selectores: No aplica.
+Modificadores: No aplica.
+Metodos: print, input, pedirPixs, menu, menuCrearImg, menuModificar, imagenHex, imagenBit, imagenRgb.

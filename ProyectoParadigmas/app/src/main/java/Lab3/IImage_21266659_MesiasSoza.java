@@ -7,10 +7,6 @@ import java.util.ArrayList;
  */
 public interface IImage_21266659_MesiasSoza
 {
-    public ArrayList<Pixel_21266659_MesiasSoza> getPixeles();
-    
-    public void setPixeles(ArrayList<Pixel_21266659_MesiasSoza> pixeles);
-
     public void sortPixs();
 
     public boolean isBitmap();
@@ -37,7 +33,7 @@ public interface IImage_21266659_MesiasSoza
 
     public String imageToString();
 
-    public ArrayList<Image_21266659_MesiasSoza> depthLayers();
+    public ArrayList<IImage_21266659_MesiasSoza> depthLayers();
 
     public void decompress();
 }

@@ -3,11 +3,15 @@ package Lab3;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Clase que hereda de imagen y sobreescribe los metodos que dependen del tipo
+ * de imagen específico. Se usan 3 valores enteros para el valor de color.
+ */
 public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
 {
 
     /**
-     * Valor de compresión
+     * Valor de compresiï¿½n
      */
     private int[] compRgb;
 
@@ -39,9 +43,12 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
             for (int val : rgb)
             {
                 if (val < 10)
+                {
                     hex += "0" + Integer.toHexString(val);
-                else
+                } else
+                {
                     hex += Integer.toHexString(val);
+                }
             }
             newPixs.add(new Pixhex_21266659_MesiasSoza(p.getX(), p.getY(), p.getDepth(), hex));
         }
@@ -49,8 +56,8 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Retorna el color que más se repite y la cantidad en una string de formato
-     * "Color/Cantidad"
+     * Retorna el color que mï¿½s se repite y la cantidad en una string de
+     * formato "Color/Cantidad"
      *
      * @return (String)
      */
@@ -58,14 +65,14 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     public String histogram()
     {
         ArrayList<String> stringList = new ArrayList<String>();
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             stringList.add(Arrays.toString(((Pixrgb_21266659_MesiasSoza) p).getRgb()));
         }
         stringList.sort(null);	// se ordena la lista
-        // se añade un null, ya que el algoritmo de histograma compara 
+        // se aï¿½ade un null, ya que el algoritmo de histograma compara 
         // cuando el elemento de la lista cambia, sin este elemento
-        // extra, el elemento final de la lista no será procesado
+        // extra, el elemento final de la lista no serï¿½ procesado
         stringList.add("NULL");
         String tempStr = stringList.get(0);
         int tempCont = 0;
@@ -78,12 +85,12 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
             if (s.equals(tempStr))
             {
                 tempCont++;
-            } else // si cambió el valor con respecto al anterior:
+            } else // si cambiï¿½ el valor con respecto al anterior:
             {
-                // si el valor se repite más que el anterior más repetido
+                // si el valor se repite mï¿½s que el anterior mï¿½s repetido
                 if (tempCont >= maxCont)
                 {
-                    // se actualiza el más repetido
+                    // se actualiza el mï¿½s repetido
                     maxCont = tempCont;
                     maxStr = tempStr;
                 }
@@ -126,7 +133,7 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Elimina los pixeles del color que más se repite y se almacena color
+     * Elimina los pixeles del color que mï¿½s se repite y se almacena color
      * eliminado
      */
     @Override
@@ -142,7 +149,7 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
         };
 
         ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             if (!Arrays.equals(compRgb, ((Pixrgb_21266659_MesiasSoza) p).getRgb()))
             {
@@ -150,7 +157,7 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
             }
         }
         this.compRgb = compRgb;
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
     }
 
     /**
@@ -164,7 +171,7 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
         this.sortPixs();
         String ret = "";
         int i = 0;
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             ret = ret + Arrays.toString(((Pixrgb_21266659_MesiasSoza) p).getRgb());
             if (i == this.width - 1)
@@ -181,7 +188,7 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Rellena los pixeles faltantes con el valor de compresión
+     * Rellena los pixeles faltantes con el valor de compresiï¿½n
      */
     @Override
     public void decompress()
@@ -204,6 +211,6 @@ public class Pixmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
             }
         }
         this.compRgb = null;
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
     }
 }

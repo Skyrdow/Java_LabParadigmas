@@ -2,11 +2,15 @@ package Lab3;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que hereda de imagen y sobreescribe los metodos que dependen del tipo
+ * de imagen específico. Se usa una String "#RRGGBB" para el valor de color.
+ */
 public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
 {
 
     /**
-     * Valor de compresión
+     * Valor de compresiï¿½n
      */
     private String compString;
 
@@ -23,7 +27,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Retorna el color que más se repite y la cantidad en una string de formato
+     * Retorna el color que mï¿½s se repite y la cantidad en una string de formato
      * "Color/Cantidad"
      *
      * @return (String)
@@ -33,7 +37,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     {
         ArrayList<String> stringList = new ArrayList<String>();
         // Obtener lista de colores
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             stringList.add(((Pixhex_21266659_MesiasSoza) p).getHex());
         }
@@ -48,12 +52,12 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
             if (s.equals(tempStr)) // si el valor no cambia aumenta el contador
             {
                 tempCont++;
-            } else // si cambió el valor con respecto al anterior:
+            } else // si cambiï¿½ el valor con respecto al anterior:
             {
-                // si el valor se repite más que el anterior más repetido
+                // si el valor se repite mï¿½s que el anterior mï¿½s repetido
                 if (tempCont >= maxCont)
                 {
-                    // se actualiza el más repetido
+                    // se actualiza el mï¿½s repetido
                     maxCont = tempCont;
                     maxStr = tempStr;
                 }
@@ -64,7 +68,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
         }
         if (tempCont >= maxCont)
         {
-            // se actualiza el más repetido
+            // se actualiza el mï¿½s repetido
             maxCont = tempCont;
             maxStr = tempStr;
         }
@@ -73,7 +77,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Elimina los pixeles del color que más se repite y se almacena color
+     * Elimina los pixeles del color que mï¿½s se repite y se almacena color
      * eliminado
      */
     @Override
@@ -82,7 +86,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
         // Extraer el color
         String compString = this.histogram().split("/", 0)[0];
         ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             // Si no es el color a comprimir, se conserva
             if (!compString.equals(((Pixhex_21266659_MesiasSoza) p).getHex()))
@@ -91,7 +95,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
             }
         }
         this.compString = compString;
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
     }
 
     /**
@@ -105,7 +109,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
         this.sortPixs();
         String ret = "";
         int w = 0;
-        for (Pixel_21266659_MesiasSoza p : this.getPixeles())
+        for (Pixel_21266659_MesiasSoza p : this.pixeles)
         {
             ret = ret + ((Pixhex_21266659_MesiasSoza) p).getHex();
             if (w == this.width - 1)
@@ -122,7 +126,7 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     }
 
     /**
-     * Rellena los pixeles faltantes con el valor de compresión
+     * Rellena los pixeles faltantes con el valor de compresiï¿½n
      */
     @Override
     public void decompress()
@@ -140,6 +144,6 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
                             
             }
         this.compString = null;
-        this.setPixeles(newPixs);
+        this.pixeles = newPixs;
     }
 }
