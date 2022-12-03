@@ -273,6 +273,7 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
         }
 
         // Generar las capas
+        IImage_21266659_MesiasSoza depthImg = null;
         for (Integer i : depthsNoClone)
         {
             ArrayList<Pixel_21266659_MesiasSoza> depthPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
@@ -288,7 +289,13 @@ public class Image_21266659_MesiasSoza implements IImage_21266659_MesiasSoza
                     depthPixs.add(p.copyToWhite());
                 }
             }
-            Image_21266659_MesiasSoza depthImg = new Image_21266659_MesiasSoza(this.width, this.height, depthPixs);
+            if (this.isBitmap())
+                depthImg = new Bitmap_21266659_MesiasSoza(this.width, this.height, depthPixs);
+            if (this.isPixmap())
+                depthImg = new Pixmap_21266659_MesiasSoza(this.width, this.height, depthPixs);
+            if (this.isHexmap())
+                depthImg = new Hexmap_21266659_MesiasSoza(this.width, this.height, depthPixs);
+                
             depthList.add(depthImg);
         }
         return depthList;

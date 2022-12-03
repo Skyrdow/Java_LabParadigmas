@@ -133,8 +133,8 @@ public class Hexmap_21266659_MesiasSoza extends Image_21266659_MesiasSoza
     {
         ArrayList<Pixel_21266659_MesiasSoza> newPixs = new ArrayList<Pixel_21266659_MesiasSoza>();
         // iterar y comprobar cada pixel faltante
-        for (int i = 0; i > 0; i++)
-            for (int j = 0; j > 0; j++)
+        for (int i = 0; i < this.height; i++)
+            for (int j = 0; j < this.width; j++)
             {
                 Pixel_21266659_MesiasSoza p = this.findPix(j, i);
                 if (p != null)
